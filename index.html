@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Tiger Puri">
+  <meta name="description" content="Coding Exercise Contacts">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Tiger Puri Guessing Game</title>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    h1 {
+        color: #4CAF50;
+    }
+    .contact-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    .contact-item {
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .exit-message {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        background-color: #fff3cd;
+        border-left: 6px solid #ffecb5;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Tiger Puri Contacts</h1><br>
+
+   <!-- Creating a display area for the contacts -->
+  <ul class="contact-list" id="contactList">
+   
+  </ul>
+
+  <div class="exit-message" id="exitMessage" style="display:none;">
+      Hope you liked my Contacts app!
+  </div>
+
+  <script>
+    // Create the contacts array
+    const contacts = ["Arnold", "Sly", "Dwayne", "Vin", "JCVD", "Steven"];
+
+    // Function to display contacts on page load
+    function displayContacts() {
+        const contactList = document.getElementById('contactList');
+        contacts.forEach((name, index) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'contact-item';
+            listItem.textContent = `Slot #${index} ${name}`;
+            contactList.appendChild(listItem);
+        });
+    }
+
+    // Function to handle user interaction via prompts
+    function promptUser() {
+        let continuePrompting = true;
+
+        while (continuePrompting) {
+            const entryNumber = prompt("Please provide an Entry Number:");
+
+            if (entryNumber !== null && !isNaN(entryNumber) && entryNumber >= 0 && entryNumber < contacts.length) {
+                const name = contacts[entryNumber];
+                const message = `Displaying ${name}.\nDo you want to make another selection? y/n`;
+                const response = prompt(message);
+
+                if (response.toLowerCase() !== 'y') {
+                    continuePrompting = false;
+                    document.getElementById('exitMessage').style.display = 'block';
+                }
+            } else {
+                const message = `That Entry is not in the Database.\nDo you want to make another selection? y/n`;
+                const response = prompt(message);
+
+                if (response.toLowerCase() !== 'y') {
+                    continuePrompting = false;
+                    document.getElementById('exitMessage').style.display = 'block';
+                }
+            }
+        }
+    }
+
+    // Display contacts on page load
+    window.onload = function() {
+        displayContacts();
+        promptUser();
+    };
+  </script>
+    
+
+
+</body>
