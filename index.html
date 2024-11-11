@@ -53,53 +53,30 @@
   </div>
 
   <script>
-    // Create the contacts array
+    // reate the contacts array
     const contacts = ["Arnold", "Sly", "Dwayne", "Vin", "JCVD", "Steven"];
 
-    // Function to display contacts on page load
-    function displayContacts() {
-        const contactList = document.getElementById('contactList');
-        contacts.forEach((name, index) => {
-            const listItem = document.createElement('li');
-            listItem.className = 'contact-item';
-            listItem.textContent = `Slot #${index} ${name}`;
-            contactList.appendChild(listItem);
-        });
-    }
+    // display contacts on page load
+    
+   //     const contactList = document.getElementById('contactList');
+       
+   //contacts.forEach((name, index) => {
+
+//   const listItem = document.createElement('li');
+//            listItem.className = 'contact-item';
+  //          listItem.textContent = `Slot #${index} ${name}`;
+   //         contactList.appendChild(listItem);
+     //   });
+    
+     for (slot=0;slot<6;slot++){
+      document.getElementById('contactList')= contacts(slot);
+     }
+
 
     // Function to handle user interaction via prompts
-    function promptUser() {
-        let continuePrompting = true;
-
-        while (continuePrompting) {
-            const entryNumber = prompt("Please provide an Entry Number:");
-
-            if (entryNumber !== null && !isNaN(entryNumber) && entryNumber >= 0 && entryNumber < contacts.length) {
-                const name = contacts[entryNumber];
-                const message = `Displaying ${name}.\nDo you want to make another selection? y/n`;
-                const response = prompt(message);
-
-                if (response.toLowerCase() !== 'y') {
-                    continuePrompting = false;
-                    document.getElementById('exitMessage').style.display = 'block';
-                }
-            } else {
-                const message = `That Entry is not in the Database.\nDo you want to make another selection? y/n`;
-                const response = prompt(message);
-
-                if (response.toLowerCase() !== 'y') {
-                    continuePrompting = false;
-                    document.getElementById('exitMessage').style.display = 'block';
-                }
-            }
-        }
-    }
-
+//
     // Display contacts on page load
-    window.onload = function() {
-        displayContacts();
-        promptUser();
-    };
+  
   </script>
     
 
